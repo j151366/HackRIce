@@ -26,6 +26,6 @@ app.get('/', function(req, res) {
   res.send('hello world');
 });
 
-app.listen(conf.port, conf.hostname, () => {
+app.listen(conf.port, conf.host, () => {
   console.log(`Server running at http://${conf.host}:${conf.port}/`);
 });
