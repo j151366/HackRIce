@@ -13,8 +13,8 @@ admin.initializeApp({
   
 const db = admin.firestore();
 
-app.get("/api/test", async (req, res) => {
-    const snapshot = await db.collection('test').get();
+app.get("/get/event", async (req, res) => {
+    const snapshot = await db.collection('event').get();
     snapshot.forEach((doc) => {
         console.log(doc.id, '=>', doc.data());
     });
@@ -22,9 +22,21 @@ app.get("/api/test", async (req, res) => {
     
 });
 
+
+app.post("/add/user", function (req, res) {
+    var data = {
+      name: req.body.name,
+      net_id: req.body.net_id,
+      password: req.body.password
+    };
+    const res = await db.collection('user').doc().set(data);
+  });
+
+
 app.get('/', function(req, res) {
-  res.send('hello world');
+    res.send('hello world');
 });
+
 
 app.listen(conf.port, conf.host, () => {
   console.log(`Server running at http://${conf.host}:${conf.port}/`);
